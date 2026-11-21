@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chính sách quyền riêng tư – Lumina Ebook</title>
+<meta name="robots" content="index,follow"><link rel="icon" href="img/icon.png">
+<style>
+:root{--bg:#fbf7f1;--surface:#fff;--text:#1f1a14;--muted:#6b6258;--line:#eadfd0;--accent:#ff9500}
+@media(prefers-color-scheme:dark){:root{--bg:#141210;--surface:#1e1b17;--text:#f4eee6;--muted:#a69c8f;--line:#322d26}}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.7 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+main{max-width:760px;margin:0 auto;padding:28px 20px 64px}
+a{color:var(--accent)} h1{font-size:30px;line-height:1.2} h2{font-size:21px;margin-top:34px}
+blockquote{margin:16px 0;padding:12px 16px;background:var(--surface);border-left:4px solid var(--accent);border-radius:8px}
+table{width:100%;border-collapse:collapse;margin:14px 0;background:var(--surface);border-radius:10px;overflow:hidden;font-size:15px}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top} th{background:var(--bg)}
+hr{border:0;border-top:1px solid var(--line);margin:30px 0} li{margin:4px 0}
+.back{display:inline-block;margin-bottom:10px;text-decoration:none}
+</style></head><body><main>
+<a class="back" href="index.html">← Về trang chủ</a>
+<h1>Chính Sách Quyền Riêng Tư — Lumina Ebook</h1>
+<p><strong>Cập nhật lần cuối: 20/11/2026</strong></p>
+<p>Lumina Ebook ("ứng dụng") là ứng dụng đọc sách điện tử (EPUB, MOBI, AZW3, TXT, PDF, CBZ/CBR) với tính năng đọc văn bản thành giọng nói (TTS) tiếng Việt. Chính sách này giải thích ứng dụng xử lý dữ liệu của bạn như thế nào.</p>
+<blockquote>Tóm tắt ngắn gọn: <strong>toàn bộ sách, tiến độ đọc, ghi chú của bạn được lưu TRÊN THIẾT BỊ của bạn</strong>. Nhà phát triển không vận hành máy chủ, không thu thập, không nhìn thấy dữ liệu đó. Ứng dụng chỉ kết nối mạng khi bạn <strong>chủ động</strong> tải giọng đọc AI offline hoặc bật tính năng Trợ Lý AI (đều tuỳ chọn).</blockquote>
+<h2>1. Dữ liệu ứng dụng lưu trữ</h2>
+<p>Tất cả dữ liệu dưới đây được lưu <strong>cục bộ trên thiết bị</strong> (cơ sở dữ liệu SQLite + bộ nhớ ứng dụng), không được gửi lên bất kỳ máy chủ nào của nhà phát triển:</p>
+<ul>
+<li>File sách bạn nhập vào ứng dụng (được sao chép vào thư mục riêng của app trên máy bạn)</li>
+<li>Tiêu đề, tác giả, ảnh bìa, tiến độ đọc, trang hiện tại, thời gian đọc</li>
+<li>Ghi chú, trích dẫn, đánh dấu, thẻ phân loại bạn tự tạo</li>
+<li>Cài đặt cá nhân: tốc độ/cao độ giọng đọc, giọng TTS đã chọn, chế độ hiển thị, khung cắt trang PDF...</li>
+<li>Khoá API Gemini (nếu bạn tự nhập để dùng Trợ Lý AI) — lưu cục bộ, không gửi cho nhà phát triển</li>
+</ul>
+<p>Gỡ cài đặt ứng dụng sẽ xoá toàn bộ dữ liệu trên. Bạn cũng có thể xoá từng cuốn sách/ghi chú bất kỳ lúc nào ngay trong ứng dụng.</p>
+<h2>2. Ứng dụng có cần Internet không?</h2>
+<p><strong>Không, phần lõi hoạt động hoàn toàn ngoại tuyến (offline):</strong> đọc sách, đọc văn bản thành giọng nói (TTS dùng engine có sẵn trên máy bạn như Google/Samsung TTS), nhận diện văn bản OCR (xử lý trên thiết bị qua Google ML Kit, không gửi ảnh lên máy chủ nào).</p>
+<p>Ứng dụng chỉ dùng kết nối mạng trong <strong>hai trường hợp, đều do bạn chủ động</strong>:</p>
+<ol>
+<li>Khi bạn bấm <strong>tải giọng đọc AI offline</strong> (khoảng 275 MB, mục 2a bên dưới).</li>
+<li>Khi bạn bật và sử dụng <strong>tính năng Trợ Lý AI đọc sách</strong> (mục 3 bên dưới).</li>
+</ol>
+<h2>2a. Giọng đọc AI offline (tuỳ chọn, tải một lần)</h2>
+<p>Bạn có thể tải thêm bộ giọng đọc AI tiếng Việt chạy hoàn toàn trên máy. Khi bạn bấm tải, ứng dụng tải các tệp mô hình (khoảng 275 MB) từ máy chủ công khai của <strong>HuggingFace</strong> và <strong>GitHub</strong>. Chỉ có yêu cầu tải tệp được gửi đi (như mọi trình duyệt khi tải một tệp, máy chủ đó thấy địa chỉ IP của bạn theo chính sách của họ). <strong>Không có sách, văn bản hay dữ liệu cá nhân nào được gửi đi.</strong> Sau khi tải xong, việc đọc sách bằng giọng AI hoàn toàn offline. Bạn có thể xoá bộ giọng này bất kỳ lúc nào trong phần chọn giọng đọc để lấy lại dung lượng.</p>
+<p>Giọng đọc AI dựa trên các dự án mã nguồn mở: VieNeu-TTS (Apache-2.0), bộ giải mã âm thanh MOSS và thư viện phiên âm sea-g2p (Apache-2.0).</p>
+<h2>3. Tính năng Trợ Lý AI (tuỳ chọn, cần bạn tự nhập khoá API)</h2>
+<p>Tính năng này <strong>tắt theo mặc định</strong> và yêu cầu bạn tự tạo &amp; nhập Khoá API Gemini miễn phí của riêng bạn (lấy tại aistudio.google.com). Khi bạn đặt câu hỏi cho Trợ Lý AI:</p>
+<ul>
+<li>Câu hỏi của bạn và một phần nội dung trang sách liên quan được gửi <strong>trực tiếp từ máy bạn đến máy chủ Google (Gemini API)</strong> để tạo câu trả lời — <strong>không đi qua máy chủ của nhà phát triển ứng dụng</strong>, vì ứng dụng không có máy chủ riêng.</li>
+<li>Việc xử lý dữ liệu này tuân theo Chính sách quyền riêng tư của Google: <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a></li>
+<li>Nhà phát triển ứng dụng không lưu trữ, không có quyền truy cập vào các câu hỏi hay nội dung bạn gửi cho Gemini.</li>
+<li>Bạn có thể tắt tính năng này hoặc xoá Khoá API đã nhập bất kỳ lúc nào trong phần cài đặt.</li>
+</ul>
+<h2>4. Quyền truy cập ứng dụng yêu cầu trên thiết bị</h2>
+<table><thead><tr><th>Quyền</th><th>Mục đích</th></tr></thead><tbody><tr><td>Bộ nhớ / Tệp tin (Lưu trữ, Ảnh)</td><td>Để bạn chọn file sách và ảnh bìa tuỳ chỉnh từ máy — ứng dụng chỉ đọc/ghi trong thư mục sách bạn chỉ định, không quét dữ liệu khác</td></tr><tr><td>Thông báo</td><td>Hiển thị điều khiển phát TTS trên thanh thông báo/màn hình khoá</td></tr><tr><td>Chạy nền / Khoá thức (Wake Lock)</td><td>Giữ TTS tiếp tục đọc khi màn hình tắt hoặc chuyển ứng dụng khác</td></tr><tr><td>Internet</td><td>Chỉ dùng khi bạn chủ động tải giọng đọc AI (mục 2a) hoặc gọi tính năng Trợ Lý AI (mục 3)</td></tr></tbody></table>
+<p>Ứng dụng <strong>không yêu cầu quyền Camera, Micro, hay Vị trí (GPS)</strong>.</p>
+<h2>5. Quảng cáo, theo dõi, phân tích hành vi</h2>
+<p>Ứng dụng <strong>không chứa</strong> mã quảng cáo, không chứa công cụ phân tích/theo dõi hành vi (analytics), không chứa SDK bên thứ ba nào thu thập dữ liệu người dùng, không bán hay chia sẻ dữ liệu cho bất kỳ ai.</p>
+<h2>6. Trẻ em</h2>
+<p>Ứng dụng không hướng đến trẻ em dưới 13 tuổi và không cố ý thu thập thông tin từ trẻ em.</p>
+<h2>7. Thay đổi chính sách</h2>
+<p>Khi có thay đổi, bản cập nhật sẽ được đăng tại cùng địa chỉ này kèm ngày cập nhật mới.</p>
+<h2>8. Liên hệ</h2>
+<p>Nếu có câu hỏi về chính sách này, liên hệ: <strong><a href="mailto:lequocviet.vtie@icloud.com">lequocviet.vtie@icloud.com</a></strong></p>
+
+</main></body></html>

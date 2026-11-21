@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lumina Ebook – Đọc và nghe sách tiếng Việt, hoàn toàn offline</title>
+<meta name="description" content="Ứng dụng đọc sách điện tử cho Android với giọng đọc AI tiếng Việt chạy ngay trên máy: nghe sách liền mạch, không cần Internet, không quảng cáo, không theo dõi.">
+<meta property="og:title" content="Lumina Ebook – Đọc và nghe sách tiếng Việt">
+<meta property="og:description" content="Giọng đọc AI tiếng Việt chạy offline trên Android. Không quảng cáo, không theo dõi.">
+<meta property="og:type" content="website">
+<link rel="icon" href="img/icon.png">
+<style>
+:root{
+  --bg:#fbf7f1; --surface:#ffffff; --text:#1f1a14; --muted:#6b6258; --line:#eadfd0;
+  --accent:#ff9500; --accent-ink:#1a1000; --accent-soft:#fff1dc; --ok:#1f9d55;
+  --shadow:0 10px 30px rgba(60,40,10,.10);
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#141210; --surface:#1e1b17; --text:#f4eee6; --muted:#a69c8f; --line:#322d26; --accent-soft:#2c2112; --shadow:0 10px 30px rgba(0,0,0,.45); }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header.nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:16px;height:60px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;text-decoration:none;font-size:18px}
+.brand img{width:32px;height:32px;border-radius:8px}
+.nav nav{margin-left:auto;display:flex;gap:22px;font-size:15px}
+.nav nav a{text-decoration:none;color:var(--muted)}
+.nav nav a:hover{color:var(--text)}
+@media(max-width:640px){.nav nav a:not(.keep){display:none}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 22px;border-radius:14px;font-weight:700;text-decoration:none;border:0;cursor:pointer;font-size:16px}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:transparent;border:1.5px solid var(--line);color:var(--text)}
+.btn[aria-disabled="true"]{opacity:.65;pointer-events:none}
+.hero{padding:56px 0 24px}
+.hero .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+@media(max-width:860px){.hero .grid{grid-template-columns:1fr}}
+.pill{display:inline-block;background:var(--accent-soft);color:var(--accent);font-weight:700;font-size:13px;padding:6px 12px;border-radius:999px;margin-bottom:16px}
+h1{font-size:clamp(32px,5.4vw,52px);line-height:1.12;margin:0 0 16px;letter-spacing:-.02em}
+h1 em{font-style:normal;color:var(--accent)}
+.lead{font-size:18px;color:var(--muted);margin:0 0 26px;max-width:34em}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:14px}
+.fine{font-size:13px;color:var(--muted);margin:0}
+.phones{display:flex;gap:16px;justify-content:center;align-items:flex-start}
+.phone{width:min(46%,250px);border-radius:26px;border:6px solid #111;background:#111;box-shadow:var(--shadow);overflow:hidden}
+.phone img{display:block;width:100%;height:auto}
+.phone:nth-child(2){margin-top:34px}
+section{padding:56px 0}
+section.alt{background:var(--surface);border-block:1px solid var(--line)}
+h2{font-size:clamp(26px,3.6vw,36px);margin:0 0 10px;letter-spacing:-.01em;line-height:1.2}
+.sub{color:var(--muted);margin:0 0 32px;max-width:40em}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:860px){.cards{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.cards{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px}
+section.alt .card{background:var(--bg)}
+.card .ic{font-size:26px;margin-bottom:8px}
+.card h3{margin:0 0 6px;font-size:17px}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:760px){.two{grid-template-columns:1fr}}
+.tier{border-radius:20px;padding:24px;border:1.5px solid var(--line);background:var(--surface)}
+.tier.best{border-color:var(--accent)}
+.tier h3{margin:0 0 4px;font-size:20px}
+.tier .tag{font-size:13px;font-weight:700;color:var(--accent)}
+.tier ul{padding-left:20px;margin:12px 0 0;color:var(--muted)}
+.tier li{margin:5px 0}
+.steps{counter-reset:s;display:grid;gap:14px;max-width:46em}
+.step{display:flex;gap:14px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px}
+.step::before{counter-increment:s;content:counter(s);flex:none;width:32px;height:32px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-weight:800}
+.step b{display:block}
+.step span{color:var(--muted);font-size:15px}
+.beta{background:linear-gradient(135deg,var(--accent-soft),var(--surface));border:1.5px solid var(--accent);border-radius:22px;padding:30px}
+.beta h2{margin-bottom:8px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:4px 18px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:700;padding:14px 0;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";float:right;color:var(--accent);font-size:22px;line-height:1}
+details[open] summary::after{content:"–"}
+details p{margin:0 0 14px;color:var(--muted)}
+footer{padding:36px 0 56px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between}
+footer p{margin:0}
+.credits{margin-top:10px}
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="img/icon.png" alt="" width="32" height="32"> Lumina Ebook</a>
+    <nav aria-label="Điều hướng">
+      <a href="#tinh-nang">Tính năng</a>
+      <a href="#giong-doc">Giọng đọc</a>
+      <a href="#cai-dat">Cài đặt</a>
+      <a href="#thu-nghiem">Thử nghiệm</a>
+      <a href="#hoi-dap">Hỏi đáp</a>
+      <a class="keep" href="#cai-dat"><strong>Tải về</strong></a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap grid">
+    <div>
+      <span class="pill">Bản thử nghiệm · Android</span>
+      <h1>Đọc sách và <em>nghe sách</em> tiếng Việt, ngay trên máy của bạn</h1>
+      <p class="lead">Giọng đọc AI tiếng Việt chạy hoàn toàn offline. Nghe liền mạch khi tắt màn hình, không cần Internet, không quảng cáo, không theo dõi.</p>
+      <div class="cta">
+        <a id="dl" class="btn primary" href="#cai-dat">Tải bản Android (APK)</a>
+        <a class="btn ghost" href="#thu-nghiem">Tham gia thử nghiệm</a>
+      </div>
+      <p class="fine">Phiên bản 1.0.62 · Android 7.0 trở lên · Miễn phí</p>
+    </div>
+    <div class="phones" aria-label="Ảnh chụp màn hình ứng dụng">
+      <div class="phone"><img src="img/home.jpg" alt="Màn hình Đang đọc với mục tiêu đọc mỗi ngày" width="450" height="975"></div>
+      <div class="phone"><img src="img/voices.jpg" alt="Bảng chọn giọng đọc AI và giọng hệ thống" width="450" height="975"></div>
+    </div>
+  </div>
+</section>
+
+<section id="tinh-nang">
+  <div class="wrap">
+    <h2>Làm cho việc nghe sách thật dễ chịu</h2>
+    <p class="sub">Những tính năng được làm riêng cho người đọc tiếng Việt.</p>
+    <div class="cards">
+      <div class="card"><div class="ic">🎧</div><h3>Giọng AI offline</h3><p>28 giọng tiếng Việt Bắc, Trung, Nam. Tải một lần rồi nghe không cần mạng.</p></div>
+      <div class="card"><div class="ic">🗣️</div><h3>Giọng riêng cho lời thoại</h3><p>Người kể một giọng, nhân vật một giọng khác, tự tách theo dấu ngoặc kép và gạch đầu dòng.</p></div>
+      <div class="card"><div class="ic">🎭</div><h3>Biểu cảm tự nhiên</h3><p>Ba mức biểu cảm, kèm tiếng cười và thở dài khi truyện tả “bật cười”, “thở dài”.</p></div>
+      <div class="card"><div class="ic">✏️</div><h3>Sửa chữ riêng cho từng sách</h3><p>Sách gõ sai “Vĩnh Thuỷ” thành “Vĩnh Thuỵ”? Sửa một lần, áp dụng cả cuốn, cả khi đọc lẫn khi nghe.</p></div>
+      <div class="card"><div class="ic">📑</div><h3>Nghe liền mạch</h3><p>Tự bỏ qua chú thích và số chú thích, chuyển chương không bị dừng, nghe tiếp khi khoá màn hình.</p></div>
+      <div class="card"><div class="ic">📚</div><h3>Nhiều định dạng</h3><p>EPUB, MOBI, AZW3, TXT, PDF, CBZ, CBR. Thư viện, ghi chú, trích dẫn và thống kê đọc mỗi ngày.</p></div>
+      <div class="card"><div class="ic">⏲️</div><h3>Hẹn giờ và nhạc nền</h3><p>Tự dừng sau một khoảng thời gian, kèm nhạc nền nhẹ nhàng khi nghe trước lúc ngủ.</p></div>
+      <div class="card"><div class="ic">🔒</div><h3>Riêng tư</h3><p>Sách và tiến độ đọc nằm trên máy bạn. Không quảng cáo, không công cụ theo dõi.</p></div>
+      <div class="card"><div class="ic">📱</div><h3>Điều khiển từ màn hình khoá</h3><p>Tạm dừng, phát, câu trước, câu sau ngay từ thông báo và tai nghe.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="giong-doc" class="alt">
+  <div class="wrap">
+    <h2>Hai kiểu giọng, chọn theo nhu cầu</h2>
+    <p class="sub">Giọng AI hay nhất nhưng tốn pin hơn. Giọng hệ thống nhẹ máy, hợp để nghe cả đêm.</p>
+    <div class="two">
+      <div class="tier best">
+        <span class="tag">Hay nhất</span>
+        <h3>Giọng AI (offline)</h3>
+        <ul>
+          <li>28 giọng, giọng đọc truyện tự nhiên, có biểu cảm</li>
+          <li>Tải một lần khoảng 275 MB, sau đó không cần mạng</li>
+          <li>Tốn pin hơn: nên cắm sạc khi nghe lâu</li>
+          <li>Cần máy 64-bit, khuyến nghị 4 GB RAM trở lên</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <span class="tag" style="color:var(--ok)">Tiết kiệm pin</span>
+        <h3>Giọng hệ thống</h3>
+        <ul>
+          <li>Dùng bộ đọc có sẵn trên máy (Google, Samsung…)</li>
+          <li>Nhẹ máy, nghe cả đêm không nóng</li>
+          <li>Không cần tải thêm gì</li>
+          <li>Giọng kém tự nhiên hơn giọng AI</li>
+        </ul>
+      </div>
+    </div>
+    <p class="fine" style="margin-top:14px">Ghim vài giọng ưa thích lên đầu danh sách bằng ngôi sao để chọn nhanh.</p>
+  </div>
+</section>
+
+<section id="cai-dat">
+  <div class="wrap">
+    <h2>Cài đặt trong vài phút</h2>
+    <p class="sub">Bản thử nghiệm chưa có trên Google Play, nên cài trực tiếp từ tệp APK.</p>
+    <div class="steps">
+      <div class="step"><div><b>Tải tệp APK về điện thoại</b><span>Bấm nút bên dưới. Tệp khoảng 93 MB.</span></div></div>
+      <div class="step"><div><b>Cho phép cài từ nguồn này</b><span>Khi Android hỏi, bật “Cho phép cài ứng dụng từ nguồn này” cho trình duyệt hoặc trình quản lý tệp bạn đang dùng.</span></div></div>
+      <div class="step"><div><b>Mở tệp và bấm Cài đặt</b><span>Mở Lumina Ebook, nhập sách của bạn vào thư viện.</span></div></div>
+      <div class="step"><div><b>Tải giọng AI (tuỳ chọn)</b><span>Vào phần Giọng đọc, bấm Tải. Nên dùng WiFi vì dung lượng khoảng 275 MB.</span></div></div>
+    </div>
+    <p style="margin-top:22px"><a id="dl2" class="btn primary" href="#">Tải bản Android (APK)</a></p>
+    <p class="fine">Chỉ tải APK từ chính trang này. Mỗi bản phát hành đều ký bằng cùng một khoá, nên các bản cập nhật sau sẽ cài đè được.</p>
+  </div>
+</section>
+
+<section id="thu-nghiem" class="alt">
+  <div class="wrap">
+    <div class="beta">
+      <h2>Cùng thử nghiệm Lumina</h2>
+      <p class="sub" style="margin-bottom:14px">Mình đang tìm khoảng 20 người dùng thử để hoàn thiện ứng dụng trước khi đưa lên Google Play, đặc biệt là người dùng máy Android phổ thông và máy đọc sách. Bạn chỉ cần dùng thử bình thường và báo lại điều gì chưa ổn: giọng đọc, pin, độ mượt.</p>
+      <a id="join" class="btn primary" href="#">Đăng ký thử nghiệm</a>
+      <p class="fine" style="margin-top:12px">Để tham gia thử nghiệm trên Google Play bạn cần một địa chỉ email Google (Gmail).</p>
+    </div>
+  </div>
+</section>
+
+<section id="hoi-dap">
+  <div class="wrap">
+    <h2>Hỏi đáp</h2>
+    <p class="sub">Những điều người dùng hay hỏi.</p>
+    <details><summary>Ứng dụng có cần Internet không?</summary><p>Không. Đọc sách và nghe sách đều chạy trên máy. Mạng chỉ dùng khi bạn chủ động tải giọng AI (khoảng 275 MB) hoặc bật tính năng Trợ Lý AI tuỳ chọn bằng khoá API của riêng bạn.</p></details>
+    <details><summary>Giọng AI có làm máy nóng và hao pin không?</summary><p>Có, nặng hơn giọng hệ thống khoảng 4–5 lần vì mô hình AI chạy ngay trên máy. Khi nghe lâu hoặc qua đêm, nên cắm sạc hoặc chuyển sang giọng hệ thống tiết kiệm pin.</p></details>
+    <details><summary>Máy của tôi có chạy được giọng AI không?</summary><p>Cần điện thoại 64-bit. Khuyến nghị từ 4 GB RAM. Máy dưới khoảng 3,5 GB RAM sẽ không hiện nút tải giọng AI, nhưng vẫn dùng được giọng hệ thống.</p></details>
+    <details><summary>Dữ liệu của tôi có bị gửi đi đâu không?</summary><p>Không. Sách, tiến độ đọc và ghi chú nằm trên máy bạn. Ứng dụng không có quảng cáo hay công cụ theo dõi. Xem chi tiết trong <a href="privacy.html">Chính sách quyền riêng tư</a>.</p></details>
+    <details><summary>Có giọng cụ thể mà tôi muốn, thêm được không?</summary><p>Bộ giọng hiện có là các giọng công khai của dự án VieNeu-TTS. Bạn có thể góp ý giọng mong muốn trong lúc thử nghiệm, mình sẽ xem xét.</p></details>
+    <details><summary>Sách đọc sai tên riêng thì làm sao?</summary><p>Bôi đen chữ sai và chọn “Sửa chữ” để tạo quy tắc cho riêng cuốn sách đó. Có thể chọn “chỉ đổi cách đọc” để giữ nguyên chữ trên màn hình.</p></details>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <p><strong>Lumina Ebook</strong> · Ứng dụng đọc sách điện tử tiếng Việt</p>
+      <p class="credits">Giọng AI dựa trên VieNeu-TTS v3 (Phạm Nguyễn Ngọc Bảo, Apache-2.0), MOSS Audio Tokenizer và sea-g2p (Apache-2.0).</p>
+    </div>
+    <p><a href="privacy.html">Chính sách quyền riêng tư</a></p>
+  </div>
+</footer>
+
+<script>
+// Điền hai đường dẫn này sau khi đăng tệp APK (ví dụ link GitHub Releases) và tạo biểu mẫu đăng ký (ví dụ Google Forms).
+// Để trống thì nút hiện "Sắp có", người dùng không bấm nhầm vào liên kết hỏng.
+var APK_URL  = "";
+var JOIN_URL = "";
+(function(){
+  function wire(id, url, label){
+    var el = document.getElementById(id); if(!el) return;
+    if(url){ el.href = url; }
+    else { el.setAttribute("aria-disabled","true"); el.removeAttribute("href"); el.textContent = label; }
+  }
+  wire("dl",   APK_URL,  "Bản APK sắp có");
+  wire("dl2",  APK_URL,  "Bản APK sắp có");
+  wire("join", JOIN_URL, "Đăng ký sắp mở");
+  if(APK_URL){ document.getElementById("dl").setAttribute("href", APK_URL); }
+})();
+</script>
+</body>
+</html>
